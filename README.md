@@ -1,62 +1,107 @@
-# Mini-app vite template
+# Stakify
 
-A template project demonstrating how to build mini-apps using the [up-provider package](https://github.com/lukso-network/tools-up-provider) and interacting with Universal Profiles on [Universal Everything](https://universaleverything.io), built with [Vite.js](https://vite.dev).
+A blockchain-based micro-challenge staking app on LUKSO. With Stakify you can create fun mini-challenges, have participants submit proof, and distribute rewards automatically on-chain.
 
-# Introduction
+---
 
-Welcome to the Hangman game with blockchain integration! This single-player game combines the fun of Hangman with the power of LUKSO technology, offering an innovative experience where your achievements are recorded on the blockchain.
+## Description
 
-The application use the Universal Profile system to authenticate users and interact with smart contracts. This ensures a secure and seamless experience.
+Stakify lets any Universal Profile holder become a challenge creator in just a few clicks. You stake some LYX to launch your challenge—anything from pushups to creative tasks—and participants submit a proof URL that you review. When you give the green light, each participant instantly receives a certain percent of your original stake, making the process transparent and trustless.
 
-# Features
+---
 
-Login: Login on [Universal Everithing](https://universaleverything.io) with your UP and use [TheGrid] to interact with the miniapp.
+## Problem
 
-Interactive Gameplay: Play the classic Hangman game with an engaging user interface.
+* **Manual payouts are messy.** Relying on direct messages or spreadsheets to track completions and send rewards wastes time and introduces errors.
+* **Lack of trust.** Participants often hesitate if they are unsure the creator will follow through with rewards.
+* **Scalability issues.** As challenges go viral, manual verification and distribution become a bottleneck.
 
-Blockchain Integration: Leverage blockchain technology for secure transactions and interactions, in this scenarios blockchain is used to monitor your win and to reward the winner with a prize.
+---
 
-Universal Profile Support: Easily authenticate and manage your profile with the Lukso Universal Profile system, this one garantee a smooth and fluid user experience, it garantee a gasless interaction, in this way users can play to the game without thinking to pay gasfees.
+## Solution
 
-## GETTING STARTED
+Stakify solves these problems by putting everything on-chain:
 
-# Install dependencies
+1. **On-chain staking.** The creator locks LYX in the smart contract as a reward pool, visible to everyone.
+2. **Proof submissions.** Participants call `completeChallenge(proofURL)` to record their submission in a single transaction.
+3. **Click-to-approve.** The creator reviews the proof off-chain, then calls `approveProof(participant)` to automatically trigger a 2% payout to each approved participant.
+4. **Pool management.** Unclaimed funds remain in the contract. The creator can top up the pool at any time or call `endChallenge()` to refund the remaining LYX back to their wallet.
 
-```bash
-npm install
+---
 
-npm run dev
+## Technical Explanation
 
-open your browser and go to http://localhost:5173 to play the game!
-```
+### Smart Contracts
 
-## How to integrate your project into The Grid
+**ChallengeFactory.sol**
 
-    1.	Deploy your app. You can use Vercel or your favorite cloud platform.
-    2.	Go to Universal Everything and add new content to The Grid.
-    3.	Choose the “Website” option and paste the URL of your dApp. If you use [Vercel], you can refer to their documentation.
-    4.	Now you can see your dApp on The Grid! Let’s start playing!
+* Deploys new `Challenge` contracts with a single function call.
+* Forwards the creator’s stake into the new contract and records the address in a registry.
 
-## Project Structure
+**Challenge.sol**
 
-- `src/context/UpProvider.tsx`: Core UP Provider implementation and wallet connection logic.
-- `src/hooks/useSmartContract.tsx`: It contains the logic to interact with the blockchain, with ethers.js or with UpProvider.
-- `src/components/`: All Components used to build the HangmanGame.
-- `src/view/`: Is the interface that you see when you start the game.
+* Maintains key state variables: `creator`, `initialPool`, `remainingPool`, and `description`.
+* Tracks each participant’s submission status in a `completed` mapping and approval status in an `approved` mapping, along with their `proofURL`.
+* Implements four main functions:
 
-# Tech Stack
+  * `completeChallenge(string proofURL)`: Participants submit their proof.
+  * `approveProof(address participant)`: Creator approves and pays out 2%.
+  * `endChallenge()`: Creator retrieves any leftover LYX.
+  * `receive()`: Allows the creator to add more LYX to the pool after deployment.
 
-- [React]: Frontend framework for building interactive UIs.
-- [Vite]: Development environment for fast builds and hot module replacement.
-- [Tailwind]: Styling framework for a sleek and modern design.
-- [Ethers.js]: Library for interacting with Ethereum blockchain. -[@lukso/up-provider](https://github.com/lukso-network/tools-up-provider/tree/main): Facilitates integration with the Universal Profile ecosystem.
+### Front-end (React + ethers.js)
 
-## Learn More
+* **Wallet integration.** MetaMask support for LUKSO Testnet, prompting users to connect.
+* **Challenge creation form.** Enter a description and stake amount, then deploy a new challenge.
+* **Challenge listings.** Fetch and display all existing challenges so users can browse and choose.
+* **Proof submission.** Clicking “Complete” prompts for a URL and submits it on-chain.
+* **Approval dashboard.** Creators see all pending proofs and approve them with a button click, triggering the reward distribution.
 
-- [LUKSO Documentation](https://docs.lukso.tech/) - Learn about LUKSO ecosystem
-- [UP Browser Extension](https://docs.lukso.tech/guides/browser-extension/install) - Install the Universal Profile Browser Extension
+---
 
-## Contributing
+## Getting Started
 
-Contributions are welcome! Feel free to submit issues and pull requests.
+1. **Clone the repository.**
 
+   ```bash
+   git clone https://github.com/yourusername/Stakify.git  
+   cd Stakify  
+   ```
+2. **Install dependencies.**
+
+   ```bash
+   npm install  
+   ```
+3. **Configuration.** Create a `.env` file with your LUKSO Testnet RPC URL and private key:
+
+   ```
+   LUKSO_RPC=https://rpc.testnet.lukso.network  
+   PRIVATE_KEY=0x...  
+   ```
+4. **Compile and deploy smart contracts.**
+
+   ```bash
+   npx hardhat compile  
+   npx hardhat run scripts/deploy.js --network luksoTestnet  
+   ```
+5. **Run the front-end application.**
+
+   ```bash
+   npm start  
+   ```
+6. **Interact with Stakify.** Use MetaMask to create challenges, submit proofs, and distribute rewards.
+
+---
+
+## YouTube Walkthrough
+
+Watch our step-by-step demo on YouTube to see Stakify in action:
+[https://youtu.be/YourVideoID](https://youtu.be/YourVideoID)
+
+---
+
+## Useful Links
+
+* **LUKSO Testnet Explorer:** [https://explorer.execution.testnet.lukso.network](https://explorer.execution.testnet.lukso.network)
+* **Universal Profiles:** [https://universalprofiles.org/](https://universalprofiles.org/)<YourProfileAddress>
+* **Deployed Factory Contract:** [https://explorer.execution.testnet.lukso.network/address/](https://explorer.execution.testnet.lukso.network/address/)<YourFactoryAddress>
