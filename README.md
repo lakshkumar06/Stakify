@@ -57,6 +57,65 @@ Stakify solves these problems by putting everything on-chain:
 * **Proof submission.** Clicking “Complete” prompts for a URL and submits it on-chain.
 * **Approval dashboard.** Creators see all pending proofs and approve them with a button click, triggering the reward distribution.
 
+Two-Contract Architecture
+The system is built using a Factory pattern, separating challenge creation from challenge logic:
+
+ChallengeFactory handles deployment and indexing of individual Challenge contracts.
+
+Each Challenge is an isolated smart contract with its own state, funds, and logic.
+
+Challenge Lifecycle
+
+When a creator calls createChallenge, a new Challenge contract is deployed with a description and an initial staked pool of funds.
+
+The contract stores initialPool, remainingPool, and manages participant submissions.
+
+Participation and Proof
+
+Any user can call completeChallenge() to submit a proof URL.
+
+Only the creator can call approveProof() or disapproveProof() for that user.
+
+Rewards are calculated as REWARD_PERCENT of the initialPool (20% by default).
+
+On approval, the smart contract handles on-chain ETH transfer to the participant.
+
+Access Control
+
+onlyCreator modifier ensures that only the challenge creator can manage approvals or end the challenge.
+
+notEnded modifier ensures no actions are taken once the challenge has been ended.
+
+Payout Safety
+
+State is updated before transferring funds to prevent re-entrancy attacks.
+
+Uses low-level call{value: ...} with require(success) for ETH transfers.
+
+End-of-Life Handling
+
+Creators can call endChallenge() to shut down the challenge and reclaim any remaining pool.
+
+Indexed Factory
+
+ChallengeFactory maintains:
+
+address[] public challenges: list of all deployed challenges
+
+mapping(address => address[]) public creatorChallenges: challenges by creator
+
+Events for Frontend Sync
+Emitted events:
+
+ChallengeCreated, ChallengeCompleted, ProofApproved, ProofDisapproved, ChallengeEnded
+
+Enables real-time UI updates and historical indexing
+
+Testnet Deployment
+
+Contracts compiled and deployed via Hardhat to LUKSO Testnet
+
+Verified interaction using Ethers.js in the frontend with contract ABIs
 ---
 
 ## Getting Started
