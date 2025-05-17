@@ -102,6 +102,5 @@ Watch our step-by-step demo on YouTube to see Stakify in action:
 
 ## Useful Links
 
-* **LUKSO Testnet Explorer:** [https://explorer.execution.testnet.lukso.network](https://explorer.execution.testnet.lukso.network)
-* **Universal Profiles:** [https://universalprofiles.org/](https://universalprofiles.org/)<YourProfileAddress>
-* **Deployed Factory Contract:** [https://explorer.execution.testnet.lukso.network/address/](https://explorer.execution.testnet.lukso.network/address/)<YourFactoryAddress>
+* **LUKSO Testnet Explorer:** ([https://explorer.execution.testnet.lukso.network](https://explorer.execution.testnet.lukso.network/address/0x0b8deD28Ef0f69e9815B95DA6923d81B3fcba92C))
+* **Deployed Factory Contract:** Paste this address in Universaleverything: ([https://capable-biscochitos-c0a80f.netlify.app/])
