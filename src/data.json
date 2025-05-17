@@ -1,0 +1,93 @@
+{
+  "popularchallenges": [
+    {
+      "name": "30-Day Fitness Blast",
+      "creator": "FitLife Community",
+      "REWARD_PERCENT": 8,
+      "description": "Complete daily fitness tasks for 30 days to build strength and endurance. Open to all fitness levels.",
+      "initialPool": 1500,
+      "remainingPool": 1200
+    },
+    {
+      "name": "Code Everyday Challenge",
+      "creator": "DevZone",
+      "REWARD_PERCENT": 9,
+      "description": "Commit to writing code every day for a month. Share progress and learn new skills together.",
+      "initialPool": 1500,
+      "remainingPool": 1200
+    },
+    {
+      "name": "Zero-Waste Week",
+      "creator": "EcoLiving",
+      "REWARD_PERCENT": 6,
+      "description": "Reduce your environmental impact by producing no waste for 7 days. Track your actions and share tips.",
+      "initialPool": 1500,
+      "remainingPool": 1200
+    }
+  ],
+ "mychallenges": [
+    {
+      "name": "30-Day Fitness Blast",
+      "creator": "FitLife Community",
+      "REWARD_PERCENT": 8,
+      "description": "Complete daily fitness tasks for 30 days to build strength and endurance. Open to all fitness levels.",
+      "initialPool": 1500,
+      "remainingPool": 1200,
+      "participants": [
+        {
+          "user_id": "u001",
+          "name": "Alice Johnson",
+          "proof_link": "https://proofsite.com/proofs/u001_day15",
+          "date_submitted": "2025-05-15"
+        },
+        {
+          "user_id": "u002",
+          "name": "Bob Smith",
+          "proof_link": "https://proofsite.com/proofs/u002_day15",
+          "date_submitted": "2025-05-15"
+        }
+      ]
+    },
+    {
+      "name": "Code Everyday Challenge",
+      "description": "Commit to writing code every day for a month. Share progress and learn new skills together.",
+      "initialPool": 1500,
+      "remainingPool": 1200,
+      "REWARD_PERCENT": 2,
+      "participants": [
+        {
+          "user_id": "u101",
+          "name": "Carol Lin",
+          "proof_link": "https://proofsite.com/proofs/u101_day10",
+          "date_submitted": "2025-05-14"
+        },
+        {
+          "user_id": "u102",
+          "name": "Daniel Roy",
+          "proof_link": "https://proofsite.com/proofs/u102_day10",
+          "date_submitted": "2025-05-14"
+        }
+      ]
+    },
+    {
+      "name": "Zero-Waste Week",
+      "REWARD_PERCENT": 6,
+      "description": "Reduce your environmental impact by producing no waste for 7 days. Track your actions and share tips.",
+      "total_participants": 800,
+      "participants": [
+        {
+          "user_id": "u201",
+          "name": "Emma Chen",
+          "proof_link": "https://proofsite.com/proofs/u201_day6",
+          "date_submitted": "2025-05-13"
+        },
+        {
+          "user_id": "u202",
+          "name": "Frank Lewis",
+          "proof_link": "https://proofsite.com/proofs/u202_day6",
+          "date_submitted": "2025-05-13"
+        }
+      ]
+    }
+  ]
+}

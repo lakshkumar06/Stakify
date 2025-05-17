@@ -1,0 +1,37 @@
+/* Add your custom styles here */ 
+@import "tailwindcss";
+
+body{
+    font-family: "Poppins", sans-serif;
+}
+
+.boxdefault{
+    /* Rectangle 1 */
+
+@apply px-[20px] py-[15px];
+
+background: #FFFFFF;
+border: 0.5px solid #d4d4d4;
+border-radius: 10px;
+
+}
+h3{
+    color: #8c8c8c;
+    @apply font-medium text-[12px];
+}
+
+.flexCol{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.shadowbox{
+
+
+box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+border-radius: 15px;
+
+}
+button{
+    cursor: pointer;
+}
