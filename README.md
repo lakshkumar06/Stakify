@@ -60,7 +60,13 @@ Stakify solves these problems by putting everything on-chain:
 
 
 ---
+## Media
+![App Screenshot 1](./images/Screenshot%202025-05-17%20at%209.30.08%E2%80%AFAM.png)
+![App Screenshot 2](./images/Screenshot%202025-05-17%20at%209.30.24%E2%80%AFAM.png)
+![App Screenshot 3](./images/Screenshot%202025-05-17%20at%209.30.33%E2%80%AFAM.png)
+![App Screenshot 4](./images/Screenshot%202025-05-17%20at%209.32.57%E2%80%AFAM.png)
 
+---
 ## Getting Started
 
 1. **Clone the repository.**
