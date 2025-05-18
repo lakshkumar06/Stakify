@@ -106,7 +106,8 @@ Stakify solves these problems by putting everything on-chain:
 ## YouTube Walkthrough
 
 Watch our step-by-step demo on YouTube to see Stakify in action:
-[https://youtu.be/YourVideoID](https://youtu.be/YourVideoID)
+[[https://youtu.be/YourVideoID](https://youtu.be/BrXIcqvh_xw)]([https://youtu.be/YourVideoID](https://youtu.be/BrXIcqvh_xw))
+
 
 ---
 
